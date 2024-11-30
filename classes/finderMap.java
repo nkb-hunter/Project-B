@@ -87,4 +87,22 @@ public class finderMap{
         }
         return result;
     }
-}
+    public boolean solveMaze(int x, int y) {
+        // Base cases
+        if (x < 0 || x >= ROWS || y < 0 || y >= COLS){
+        return false;
+        } // Out of bounds
+        if (!getPath(x, y) || getVisited(x, y) ){
+        return false;
+        } // Not a valid path or already visited
+        setVisited(x, y);
+        if (solveMaze(x - 1, y) ||solveMaze(x + 1, y) || solveMaze(x, y - 1) || solveMaze(x, y + 1) ) {
+        return true;
+        }
+        if (map[x][y].equals("!")) {
+            return true; // Reached end
+            }
+        visited[x][y] = false;
+        return false;
+        }
+    }
