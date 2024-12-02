@@ -39,7 +39,7 @@ public class finderMap{
     }
 
     public boolean getPath(int x, int y){
-        return map[x][y].equals("x");
+        return map[x][y].equals("p") || map[x][y].equals("!") || map[x][y].equals("#");
     }
 
     public boolean getVisited(int x, int y){
@@ -87,21 +87,36 @@ public class finderMap{
         }
         return result;
     }
+    public int getRows() {
+        return ROWS;
+    }
+    
+    public int getCols() {
+        return COLS;
+    }
+    
+    public String[][] getMap() {
+        return map;
+    }
     public boolean solveMaze(int x, int y) {
         // Base cases
         if (x < 0 || x >= ROWS || y < 0 || y >= COLS){
         return false;
         } // Out of bounds
-        if (!getPath(x, y) || getVisited(x, y) ){
+        if (!getPath(x, y)){
         return false;
-        } // Not a valid path or already visited
+        } // Not a valid path 
+        if (getVisited(x, y)){
+            return false;
+        } //already visited
+        if (map[x][y].equals("!")) {
+            setVisited(x, y);
+            return true; //Reached end
+        }
         setVisited(x, y);
         if (solveMaze(x - 1, y) ||solveMaze(x + 1, y) || solveMaze(x, y - 1) || solveMaze(x, y + 1) ) {
         return true;
         }
-        if (map[x][y].equals("!")) {
-            return true; // Reached end
-            }
         visited[x][y] = false;
         return false;
         }
