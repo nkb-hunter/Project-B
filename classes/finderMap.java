@@ -43,7 +43,7 @@ public class finderMap{
     }
 
     public boolean getVisited(int x, int y){
-        return visited[x][y] == true;
+        return visited[x][y];
     }
 
     public boolean[][] getVisited(){
