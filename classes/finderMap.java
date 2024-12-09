@@ -164,7 +164,7 @@ public class finderMap{
             currentRoute.addStep(x, y, costs[x][y]);
             CompleteRoute completedRoute = new CompleteRoute(currentRoute);
             allRoutes.add(completedRoute);
-            System.out.println("Route found: " + completedRoute);
+            //System.out.println("Route found: " + completedRoute); --was used for debugging
             currentRoute.removeStep(costs[x][y]);
             return;
         }
@@ -186,12 +186,16 @@ public class finderMap{
         if (allRoutes.isEmpty()) {
             System.out.println("No routes found.");
             return null;
-        }
-        else{
+        } else {
             for (CompleteRoute route : allRoutes) {
-                System.out.println("Route considered: " + route); // Debug print
+                System.out.println("Route considered: " + route); //For debuggig
             }
-            CompleteRoute bestRoute = allRoutes.stream().min((r1, r2) -> Integer.compare(r1.getTotalCost(), r2.getTotalCost())).orElse(null);
+            CompleteRoute bestRoute = null;
+            for (CompleteRoute route : allRoutes) {
+                if (bestRoute == null || route.getTotalCost() < bestRoute.getTotalCost()) {
+                    bestRoute = route;
+                }
+            }  
             return bestRoute;
         }
     }
