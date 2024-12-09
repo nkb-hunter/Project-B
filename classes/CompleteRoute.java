@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompleteRoute {
-    private List<int[]> steps; // List of {x, y} coordinates
+    private List<int[]> steps; //List of coordinates
     private int totalCost;
 
     public CompleteRoute() {
@@ -39,10 +39,11 @@ public class CompleteRoute {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Route (Cost: ").append(totalCost).append("):\n");
+        sb.append("The route costs ").append(totalCost).append(".\nThe route is: \n");
         for (int[] step : steps) {
             sb.append("(").append(step[0]).append(", ").append(step[1]).append(") ");
         }
         return sb.toString();
     }
+   
 }

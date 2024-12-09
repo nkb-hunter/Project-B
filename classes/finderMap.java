@@ -153,36 +153,46 @@ public class finderMap{
         totalCost[0] -= costs[x][y];
         return false;
         }
-        public void findAllRoutes(int x, int y, CompleteRoute currentRoute) {
-            // Base cases
-            if (x < 0 || x >= ROWS || y < 0 || y >= COLS || map[x][y].equals("X") || visited[x][y] != 0) {
-                return; // Out of bounds or already visited
-            }
-    
-            // If we reach the end
-            if (map[x][y].equals("!")) {
-                currentRoute.addStep(x, y, costs[x][y]);
-                allRoutes.add(new CompleteRoute(currentRoute));
-                currentRoute.removeStep(costs[x][y]);
-                return;
-            }
-    
-            // Mark the current cell as visited with the step number
-            visited[x][y] = currentRoute.getSteps().size() + 1;
-            currentRoute.addStep(x, y, costs[x][y]);
-    
-            // Explore all directions
-            findAllRoutes(x - 1, y, currentRoute); 
-            findAllRoutes(x + 1, y, currentRoute); 
-            findAllRoutes(x, y - 1, currentRoute); 
-            findAllRoutes(x, y + 1, currentRoute); 
-    
-            // Backtrack
-            visited[x][y] = 0;
-            currentRoute.removeStep(costs[x][y]);
+    public void findAllRoutes(int x, int y, CompleteRoute currentRoute) {
+        // Base cases
+        if (x < 0 || x >= ROWS || y < 0 || y >= COLS || map[x][y].equals("X") || visited[x][y] != 0) {
+            return; // Out of bounds or already visited
         }
-    
-        public CompleteRoute getLowestCostRoute() {
-            return allRoutes.stream().min((r1, r2) -> Integer.compare(r1.getTotalCost(), r2.getTotalCost())).orElse(null);
+
+        // If we reach the end
+        if (map[x][y].equals("!")) {
+            currentRoute.addStep(x, y, costs[x][y]);
+            CompleteRoute completedRoute = new CompleteRoute(currentRoute);
+            allRoutes.add(completedRoute);
+            System.out.println("Route found: " + completedRoute);
+            currentRoute.removeStep(costs[x][y]);
+            return;
+        }
+
+        // Mark the current cell as visited with the step number
+        visited[x][y] = currentRoute.getSteps().size() + 1;
+        currentRoute.addStep(x, y, costs[x][y]);
+
+        findAllRoutes(x + 1, y, currentRoute); 
+        findAllRoutes(x - 1, y, currentRoute); 
+        findAllRoutes(x, y + 1, currentRoute); 
+        findAllRoutes(x, y - 1, currentRoute); 
+
+        //Backtrack
+        visited[x][y] = 0;
+        currentRoute.removeStep(costs[x][y]);
+    }
+    public CompleteRoute getLowestCostRoute() {
+        if (allRoutes.isEmpty()) {
+            System.out.println("No routes found.");
+            return null;
+        }
+        else{
+            for (CompleteRoute route : allRoutes) {
+                System.out.println("Route considered: " + route); // Debug print
+            }
+            CompleteRoute bestRoute = allRoutes.stream().min((r1, r2) -> Integer.compare(r1.getTotalCost(), r2.getTotalCost())).orElse(null);
+            return bestRoute;
         }
     }
+}

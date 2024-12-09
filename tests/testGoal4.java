@@ -5,7 +5,7 @@ import classes.finderMap;
 
 public class testGoal4 {
     public static void main(String[] args) {
-        String testMap = "X!xxxxx\nX3x888#\nX218xxx\nxxxxxxx";
+        String testMap = "!21XX\n3X888\n218XXX\n#XXXX";
         finderMap FM = new finderMap(testMap);
 
         System.out.println("Original Map:");
@@ -32,6 +32,5 @@ public class testGoal4 {
         } else {
             System.out.println("No routes found.");
         }
-        System.out.println(FM.getPath(0,0));
     }
 }
