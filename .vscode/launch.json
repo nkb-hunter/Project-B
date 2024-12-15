@@ -1,0 +1,58 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "MazeGUI",
+            "request": "launch",
+            "mainClass": "classes.MazeGUI",
+            "vmArgs": "--module-path javafx-sdk-23.0.1/lib --add-modules ALL-MODULE-PATH",
+            "projectName": "Project-B_ead684b5"
+        },
+        {
+            "type": "java",
+            "name": "CompleteRoute",
+            "request": "launch",
+            "mainClass": "classes.CompleteRoute",
+            "projectName": "Project-B_ead684b5"
+        },
+        {
+            "type": "java",
+            "name": "testGoal1",
+            "request": "launch",
+            "mainClass": "tests.testGoal1",
+            "projectName": "Project-B_ead684b5"
+        },
+        {
+            "type": "java",
+            "name": "testGoal2",
+            "request": "launch",
+            "mainClass": "tests.testGoal2",
+            "projectName": "Project-B_ead684b5"
+        },
+        {
+            "type": "java",
+            "name": "testGoal3",
+            "request": "launch",
+            "mainClass": "tests.testGoal3",
+            "projectName": "Project-B_ead684b5"
+        },
+        {
+            "type": "java",
+            "name": "testGoal4",
+            "request": "launch",
+            "mainClass": "tests.testGoal4",
+            "projectName": "Project-B_ead684b5"
+        }
+    ]
+}
